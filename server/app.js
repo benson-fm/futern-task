@@ -37,3 +37,20 @@ app.get('/:name', async (req, res) => {
 
     res.json(data[0]); // Send first matching user
 });
+
+app.post("/add-user", async (req, res) => {
+    try {
+        const { name, year, description, fun_fact } = req.body; // Expecting JSON data
+
+        // Insert into Supabase
+        const { data, error } = await db
+            .from("person") // Change "users" to your actual table name
+            .insert([{ name, year, description, fun_fact }]);
+
+        if (error) throw error;
+
+        res.status(201).json({ message: "User added successfully", data });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
