@@ -8,6 +8,7 @@ export default function Home() {
     <>
       <div className="flex w-full h-dvh justify-center items-center">
         <DataCard name={"Benson"}/>
+        <DataCard name={"Geric"}/>
       </div>
     </>
   );
